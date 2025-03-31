@@ -35,10 +35,10 @@ mongoose.connect(process.env.MONGODB_URI, {
     useUnifiedTopology: true,
 });
 mongoose.connection.on('connected', () => {
-    console.log('Connected to MongoDB');
+    console.log('Connected to MongoDB:', process.env.MONGODB_URI); // Log MongoDB URI
 });
 mongoose.connection.on('error', (err) => {
-    console.log('Error connecting to MongoDB:', err);
+    console.error('Error connecting to MongoDB:', err); // Log connection errors
 });
 
 // Routes
@@ -48,7 +48,7 @@ app.use('/api', require('./routes/api'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Start server
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });

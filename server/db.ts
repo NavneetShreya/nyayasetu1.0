@@ -50,14 +50,13 @@ export async function connectToDatabase() {
 
 export async function initializeDatabase() {
   try {
-    // Check if data exists already
     const userCount = await collections.users.countDocuments();
+    console.log('User count in database:', userCount); // Log user count
     if (userCount > 0) {
       console.log("Database already has data, skipping initialization");
       return;
     }
-    
-    // Initialize with sample data
+
     console.log("Initializing database with sample data");
     
     // Add practice areas
@@ -196,7 +195,7 @@ export async function initializeDatabase() {
     
     console.log("Database initialized with sample data");
   } catch (error) {
-    console.error("Database initialization error:", error);
+    console.error("Database initialization error:", error); // Log initialization errors
     throw error;
   }
 }
