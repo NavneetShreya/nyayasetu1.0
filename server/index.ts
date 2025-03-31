@@ -6,6 +6,12 @@ import { connectToDatabase, initializeDatabase } from "./db";
 import passport from "./auth";
 import { mongoStorage } from "./mongo-storage";
 import { storage } from "./storage";
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+// Derive __dirname for ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Determine which storage to use based on environment variable
 const useMongo = process.env.USE_MONGO === 'true';
@@ -66,6 +72,14 @@ app.get("/api/status", (req, res) => {
     message: "NyayaSetu API is running",
     timestamp: new Date().toISOString()
   });
+});
+
+// Serve static files
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Fallback to index.html for SPA
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 (async () => {

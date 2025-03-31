@@ -1830,7 +1830,7 @@ import path, { dirname } from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 import { fileURLToPath } from "url";
 var __filename = fileURLToPath(import.meta.url);
-var __dirname2 = dirname(__filename);
+var __dirname = dirname(__filename);
 var vite_config_default = defineConfig({
   plugins: [
     react(),
@@ -1844,14 +1844,14 @@ var vite_config_default = defineConfig({
   ],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname2, "client", "src"),
-      "@shared": path.resolve(__dirname2, "shared"),
-      "@assets": path.resolve(__dirname2, "attached_assets")
+      "@": path.resolve(__dirname, "client", "src"),
+      "@shared": path.resolve(__dirname, "shared"),
+      "@assets": path.resolve(__dirname, "attached_assets")
     }
   },
-  root: path.resolve(__dirname2, "client"),
+  root: path.resolve(__dirname, "client"),
   build: {
-    outDir: path.resolve(__dirname2, "dist/public"),
+    outDir: path.resolve(__dirname, "dist/public"),
     emptyOutDir: true
   }
 });
@@ -1859,7 +1859,7 @@ var vite_config_default = defineConfig({
 // server/vite.ts
 import { nanoid } from "nanoid";
 var __filename2 = fileURLToPath2(import.meta.url);
-var __dirname3 = dirname2(__filename2);
+var __dirname2 = dirname2(__filename2);
 var viteLogger = createLogger();
 function log(message, source = "express") {
   const formattedTime = (/* @__PURE__ */ new Date()).toLocaleTimeString("en-US", {
@@ -1894,7 +1894,7 @@ async function setupVite(app2, server) {
     const url = req.originalUrl;
     try {
       const clientTemplate = path2.resolve(
-        __dirname3,
+        __dirname2,
         "..",
         "client",
         "index.html"
@@ -1913,7 +1913,7 @@ async function setupVite(app2, server) {
   });
 }
 function serveStatic(app2) {
-  const distPath = path2.resolve(__dirname3, "public");
+  const distPath = path2.resolve(__dirname2, "public");
   if (!fs.existsSync(distPath)) {
     throw new Error(
       `Could not find the build directory: ${distPath}, make sure to build the client first`
@@ -1928,6 +1928,9 @@ function serveStatic(app2) {
 // server/index.ts
 import session2 from "express-session";
 import path3 from "path";
+import { fileURLToPath as fileURLToPath3 } from "url";
+var __filename3 = fileURLToPath3(import.meta.url);
+var __dirname3 = path3.dirname(__filename3);
 var useMongo = process.env.USE_MONGO === "true";
 var app = express2();
 app.use(express2.json());
@@ -1977,9 +1980,9 @@ app.get("/api/status", (req, res) => {
     timestamp: (/* @__PURE__ */ new Date()).toISOString()
   });
 });
-app.use(express2.static(path3.join(__dirname, "public")));
+app.use(express2.static(path3.join(__dirname3, "public")));
 app.get("*", (req, res) => {
-  res.sendFile(path3.join(__dirname, "public", "index.html"));
+  res.sendFile(path3.join(__dirname3, "public", "index.html"));
 });
 (async () => {
   try {
