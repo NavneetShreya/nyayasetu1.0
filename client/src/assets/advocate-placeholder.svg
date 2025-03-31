@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="400" height="400" fill="#1a1a1a"/>
+  
+  <!-- Animated gradient background -->
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#000000" stop-opacity="0.7">
+        <animate attributeName="stop-color" values="#000000;#555555;#222222;#000000" dur="8s" repeatCount="indefinite"/>
+      </stop>
+      <stop offset="100%" stop-color="#ffd700" stop-opacity="0.3">
+        <animate attributeName="stop-color" values="#ffd700;#e6c200;#ffd700;#e6c200" dur="8s" repeatCount="indefinite"/>
+      </stop>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#grad1)"/>
+  
+  <!-- Head silhouette -->
+  <circle cx="200" cy="150" r="80" fill="#333333"/>
+  
+  <!-- Body silhouette -->
+  <path d="M140,240 C140,200 260,200 260,240 L260,350 L140,350 Z" fill="#333333"/>
+  
+  <!-- Legal symbols -->
+  <g fill="#ffd700" opacity="0.8">
+    <!-- Scales of justice icon -->
+    <path d="M180,110 L220,110 L220,130 L230,130 L230,140 L170,140 L170,130 L180,130 Z" />
+    <circle cx="175" cy="150" r="15" />
+    <circle cx="225" cy="150" r="15" />
+    <rect x="195" y="140" width="10" height="40" />
+  </g>
+  
+  <!-- Text indication -->
+  <text x="200" y="300" font-family="Arial" font-size="20" text-anchor="middle" fill="#ffd700">Generic Advocate</text>
+  
+  <!-- Animated elements -->
+  <circle cx="200" cy="150" r="90" fill="none" stroke="#ffd700" stroke-width="3" opacity="0.5">
+    <animate attributeName="opacity" values="0.5;0.2;0.5" dur="3s" repeatCount="indefinite"/>
+    <animate attributeName="r" values="90;95;90" dur="3s" repeatCount="indefinite"/>
+  </circle>
+</svg>
