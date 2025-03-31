@@ -1,4 +1,5 @@
 import { MongoClient, ServerApiVersion } from 'mongodb';
+import bcrypt from 'bcryptjs'; // Update to use ES module-compatible import
 
 // Connection URI
 const uri = process.env.MONGODB_URI || "mongodb://localhost:27017/nyayasetu";
@@ -95,7 +96,6 @@ export async function initializeDatabase() {
     const locationsResult = await collections.locations.insertMany(locationData);
     
     // Add test user accounts (both client and advocate)
-    const bcrypt = require('bcryptjs');
     const saltRounds = 10;
     
     // Create a client account
