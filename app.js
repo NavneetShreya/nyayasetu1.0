@@ -18,6 +18,10 @@ app.use(
     session({
         store: MongoStore.create({
             mongoUrl: process.env.SESSION_STORE_URI, // Ensure this is correctly set in .env
+            mongoOptions: {
+                useNewUrlParser: true,
+                useUnifiedTopology: true,
+            },
         }),
         secret: process.env.SESSION_SECRET,
         resave: false,
